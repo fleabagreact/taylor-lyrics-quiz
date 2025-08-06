@@ -106,10 +106,9 @@ export default function QuizPage({ playerName, setPlayerName }) {
 
           <br />
 
-          <button onClick={handleRestart}>Jogar novamente</button>
-          <button onClick={handleRanking} style={{ marginTop: '10px' }}>
-            Ver Ranking
-          </button>
+          <button onClick={handleRestart} className="start-btn">Jogar novamente</button>
+          <br />
+          <button onClick={handleRanking} className="start-btn">Ver Ranking</button>
         </div>
       )}
     </div>

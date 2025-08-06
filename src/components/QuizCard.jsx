@@ -7,12 +7,14 @@ export default function QuizCard({ song, onScoreUpdate, allSongs }) {
   const [answered, setAnswered] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(5);
 
   useEffect(() => {
     setLoading(true);
     setError(false);
     setAnswered(false);
     setSelected('');
+    setTimeLeft(5);
 
     fetch(`https://taylor-swift-api.sarbo.workers.dev/lyrics/${song.song_id}`)
       .then((res) => res.json())
@@ -47,6 +49,23 @@ export default function QuizCard({ song, onScoreUpdate, allSongs }) {
       });
   }, [song]);
 
+  useEffect(() => {
+    if (answered || loading || error) return;
+
+    if (timeLeft === 0) {
+      setAnswered(true);
+      playSound('wrong');
+      setTimeout(() => onScoreUpdate(false), 1200);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [timeLeft, answered, loading, error]);
+
   const playSound = (type) => {
     const audio = new Audio(`/${type}.mp3`);
     audio.play();
@@ -69,6 +88,9 @@ export default function QuizCard({ song, onScoreUpdate, allSongs }) {
     <div className="quiz-card fade-in">
       <h3>🌟 Que música tem esse trecho? 🌟</h3>
       <blockquote className="lyric-line">“{lyrics}”</blockquote>
+
+      <p className="timer">⏳ Tempo restante: <strong>{timeLeft}s</strong></p>
+
       <ul className="options">
         {options.map((opt) => (
           <li

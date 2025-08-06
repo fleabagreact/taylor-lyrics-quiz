@@ -121,6 +121,20 @@
      max-width: 800px;
      margin: 0 auto;
    }
+
+   .timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #e60073;
+    animation: pulse 1s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }  
    
    .quiz-card {
      background: linear-gradient(to right, var(--bg-gradient-start), var(--bg-gradient-end));
@@ -148,9 +162,6 @@
      user-select: text;
    }
    
-   /* =======================
-      ✅ Opções
-      ======================= */
    .options {
      list-style: none;
      padding: 0;
