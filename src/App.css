@@ -1,293 +1,305 @@
-/* Import da fonte */
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
-
 /* =======================
-   🌙 Taylor Swift Quiz - Global Styles
+   📦 Importações
    ======================= */
-:root {
-  /* Cores principais */
-  --bg-gradient-start: #fce4ec;
-  --bg-gradient-end: #f3e5f5;
-  --primary-purple: #4a148c;
-  --accent-purple: #8e24aa;
-  --light-purple: #ce93d8;
-  --dark-purple: #6a1b9a;
-  --white: #fff;
-  --green: #2e7d32;
-  --light-green: #c8e6c9;
-  --red: #c62828;
-  --light-red: #ffcdd2;
+   @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap');
 
-  /* Sombras */
-  --shadow-soft: 0 2px 5px rgba(219, 112, 147, 0.2);
-  --shadow-strong: 0 5px 15px rgba(206, 147, 216, 0.5);
-  --shadow-hover: 0 8px 20px rgba(142, 36, 170, 0.7);
+   /* =======================
+      🌙 Variáveis Globais
+      ======================= */
+   :root {
+     /* Cores principais */
+     --bg-gradient-start: #fce4ec;
+     --bg-gradient-end: #f3e5f5;
+     --primary-purple: #4a148c;
+     --accent-purple: #8e24aa;
+     --light-purple: #ce93d8;
+     --dark-purple: #6a1b9a;
+     --white: #fff;
+     --green: #2e7d32;
+     --light-green: #c8e6c9;
+     --red: #c62828;
+     --light-red: #ffcdd2;
+   
+     /* Sombras */
+     --shadow-soft: 0 2px 5px rgba(219, 112, 147, 0.2);
+     --shadow-strong: 0 5px 15px rgba(206, 147, 216, 0.5);
+     --shadow-hover: 0 8px 20px rgba(142, 36, 170, 0.7);
+   
+     /* Fonte */
+     --font-main: 'IM Fell Dw Pica', serif;
+   }
+   
+   /* =======================
+      🌐 Estilos Globais
+      ======================= */
+   body {
+     margin: 0;
+     font-family: var(--font-main);
+     font-style: italic;
+     background: linear-gradient(to right, var(--bg-gradient-start), var(--bg-gradient-end));
+     color: var(--primary-purple);
+     min-height: 100vh;
+   }
+   
+   /* =======================
+      🚀 Tela Inicial
+      ======================= */
+   .start-screen {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     padding: 2rem;
+     text-align: center;
+   }
+   
+   .start-screen h1 {
+     font-size: 3rem;
+     margin-bottom: 2rem;
+     text-shadow: 1px 1px 5px rgba(219, 112, 147, 0.6);
+   }
+   
+   .name-input {
+     width: 280px;
+     padding: 0.8rem 1rem;
+     font-size: 1.2rem;
+     border: 2px solid var(--light-purple);
+     border-radius: 1rem;
+     outline: none;
+     color: var(--primary-purple);
+     transition: border-color 0.3s ease;
+   }
+   
+   .name-input:focus {
+     border-color: var(--accent-purple);
+     box-shadow: 0 0 8px var(--accent-purple);
+   }
+   
+   .start-btn {
+     margin-top: 1.5rem;
+     background-color: var(--light-purple);
+     color: var(--primary-purple);
+     border: none;
+     padding: 0.9rem 2rem;
+     font-size: 1.3rem;
+     font-weight: 700;
+     font-family: var(--font-main);
+     border-radius: 1rem;
+     cursor: pointer;
+     box-shadow: var(--shadow-strong);
+     transition: background-color 0.3s ease, color 0.3s ease;
+   }
+   
+   .start-btn:hover:not(:disabled) {
+     background-color: var(--accent-purple);
+     color: var(--white);
+     box-shadow: var(--shadow-hover);
+   }
+   
+   .start-btn:disabled {
+     background-color: #e1bee7;
+     color: #b39ddb;
+     cursor: not-allowed;
+     box-shadow: none;
+   }
+   
+   .decor-image {
+     margin-top: 3rem;
+     max-width: 320px;
+     width: 80vw;
+     border-radius: 1rem;
+     box-shadow: 0 5px 25px rgba(219, 112, 147, 0.3);
+     filter: drop-shadow(0 0 6px var(--light-purple));
+     user-select: none;
+   }
+   
+   /* =======================
+      🎵 Tela de Quiz
+      ======================= */
+   .game-screen {
+     padding: 2rem;
+     max-width: 800px;
+     margin: 0 auto;
+   }
+   
+   .quiz-card {
+     background: linear-gradient(to right, var(--bg-gradient-start), var(--bg-gradient-end));
+     padding: 2rem;
+     border-radius: 1.5rem;
+     text-align: center;
+     margin: 2rem auto;
+     max-width: 600px;
+     box-shadow: 0 0 30px rgba(219, 112, 147, 0.4);
+   }
+   
+   .quiz-card h3 {
+     margin-bottom: 1rem;
+   }
+   
+   .lyric-line {
+     font-style: italic;
+     font-size: 1.3rem;
+     margin: 1.5rem 0;
+     color: var(--dark-purple);
+     line-height: 1.6;
+     letter-spacing: 0.03em;
+     border-left: 4px solid var(--light-purple);
+     padding-left: 1rem;
+     user-select: text;
+   }
+   
+   /* =======================
+      ✅ Opções
+      ======================= */
+   .options {
+     list-style: none;
+     padding: 0;
+     margin-top: 1rem;
+     display: grid;
+     gap: 1rem;
+   }
+   
+   .option {
+     background-color: var(--white);
+     border: 2px solid var(--light-purple);
+     padding: 0.9rem 1.2rem;
+     border-radius: 1rem;
+     cursor: pointer;
+     font-weight: 700;
+     color: var(--primary-purple);
+     box-shadow: var(--shadow-soft);
+     transition: 0.3s ease;
+   }
+   
+   .option:hover {
+     background-color: var(--bg-gradient-end);
+     box-shadow: 0 4px 10px rgba(219, 112, 147, 0.4);
+   }
+   
+   .option.correct {
+     background-color: var(--light-green);
+     border-color: #66bb6a;
+     color: var(--green);
+     box-shadow: 0 0 15px #66bb6a;
+   }
+   
+   .option.wrong {
+     background-color: var(--light-red);
+     border-color: #ef5350;
+     color: var(--red);
+     box-shadow: 0 0 15px #ef5350;
+   }
 
-  /* Fonte */
-  --font-main: 'IM Fell English SC', serif;
-}
-
-/* =======================
-   🌟 Componentes principais
-   ======================= */
-
-body {
-  margin: 0;
-  font-family: var(--font-main);
-  background: linear-gradient(to right, var(--bg-gradient-start), var(--bg-gradient-end));
-  color: var(--primary-purple);
-  min-height: 100vh;
-}
-
-/* Start Screen */
-.start-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  text-align: center;
-}
-
-.start-screen h1 {
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  text-shadow: 1px 1px 5px rgba(219, 112, 147, 0.6);
-}
-
-/* Inputs e Botões */
-.name-input {
-  width: 280px;
-  padding: 0.8rem 1rem;
-  font-size: 1.2rem;
-  border: 2px solid var(--light-purple);
-  border-radius: 1rem;
-  outline: none;
-  transition: border-color 0.3s ease;
-  color: var(--primary-purple);
-}
-
-.name-input:focus {
-  border-color: var(--accent-purple);
-  box-shadow: 0 0 8px var(--accent-purple);
-}
-
-.start-btn {
-  margin-top: 1.5rem;
-  background-color: var(--light-purple);
-  color: var(--primary-purple);
-  border: none;
-  padding: 0.9rem 2rem;
-  font-family: var(--font-main);
-  font-size: 1.3rem;
-  border-radius: 1rem;
-  cursor: pointer;
-  box-shadow: var(--shadow-strong);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-weight: 700;
-}
-
-.start-btn:hover:not(:disabled) {
-  background-color: var(--accent-purple);
-  color: var(--white);
-  box-shadow: var(--shadow-hover);
-}
-
-.start-btn:disabled {
-  background-color: #e1bee7;
-  color: #b39ddb;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-/* Imagem decorativa */
-.decor-image {
-  margin-top: 3rem;
-  max-width: 320px;
-  width: 80vw;
-  border-radius: 1rem;
-  box-shadow: 0 5px 25px rgba(219, 112, 147, 0.3);
-  filter: drop-shadow(0 0 6px var(--light-purple));
-  user-select: none;
-}
-
-/* =======================
-   🎵 Quiz
-   ======================= */
-.game-screen {
-  padding: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.quiz-card {
-  background: linear-gradient(to right, var(--bg-gradient-start), var(--bg-gradient-end));
-  padding: 2rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 0 30px rgba(219, 112, 147, 0.4);
-  text-align: center;
-  margin: 2rem auto;
-  max-width: 600px;
-}
-
-.quiz-card h3 {
-  margin-bottom: 1rem;
-}
-
-.lyric-line {
-  font-style: italic;
-  font-size: 1.3rem;
-  margin: 1.5rem 0;
-  color: var(--dark-purple);
-  line-height: 1.6;
-  letter-spacing: 0.03em;
-  border-left: 4px solid var(--light-purple);
-  padding-left: 1rem;
-  user-select: text;
-}
-
-.options {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.option {
-  background-color: var(--white);
-  border: 2px solid var(--light-purple);
-  padding: 0.9rem 1.2rem;
-  border-radius: 1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-  font-weight: 700;
-  color: var(--primary-purple);
-  box-shadow: var(--shadow-soft);
-}
-
-.option:hover {
-  background-color: var(--bg-gradient-end);
-  box-shadow: 0 4px 10px rgba(219, 112, 147, 0.4);
-}
-
-.option.correct {
-  background-color: var(--light-green);
-  border-color: #66bb6a;
-  color: var(--green);
-  box-shadow: 0 0 15px #66bb6a;
-}
-
-.option.wrong {
-  background-color: var(--light-red);
-  border-color: #ef5350;
-  color: var(--red);
-  box-shadow: 0 0 15px #ef5350;
-}
-
-/* Estados */
-.swiftie-loading,
-.swiftie-error {
-  font-size: 1.1rem;
-  text-align: center;
-  margin: 2rem;
-  color: var(--accent-purple);
-  user-select: none;
-}
-
-.quiz-finished {
-  text-align: center;
-  margin-top: 4rem;
-}
-
-.quiz-finished button {
-  background-color: var(--accent-purple);
-  color: var(--white);
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 1rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.quiz-finished button:hover {
-  background-color: var(--primary-purple);
-}
-
-.fade-in {
-  animation: fadeIn 0.8s ease forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.ranking-screen {
-  max-width: 500px;
-  margin: 3rem auto;
-  padding: 2rem;
-  text-align: center;
-  background-color: var(--bg-200);
-  border-radius: 1.5rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  animation: fade-in 0.6s ease-in-out;
-}
-
-.ranking-title {
-  font-size: 2rem;
-  color: var(--accent-200);
-  margin-bottom: 1.5rem;
-}
-
-.ranking-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  text-align: left;
-}
-
-.ranking-item {
-  background-color: var(--bg-300);
-  margin-bottom: 0.8rem;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  font-weight: 500;
-  display: flex;
-  justify-content: space-between;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.ranking-item:first-child {
-  background-color: var(--accent-100);
-  color: white;
-  font-weight: bold;
-  border: 2px solid var(--accent-200);
-}
-
-.ranking-back-btn {
-  margin-top: 1.5rem;
-  background-color: var(--accent-200);
-  color: white;
-  padding: 0.6rem 1.2rem;
-  font-family: var(--font-main);
-  border: none;
-  border-radius: 0.6rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.ranking-back-btn:hover {
-  background-color: var(--accent-100);
-}
-
-
-
+   /* =======================
+      🏆 Ranking
+      ======================= */
+      .ranking-screen {
+        max-width: 500px;
+        margin: 3rem auto;
+        padding: 2rem;
+        text-align: center;
+        background-color: var(--bg-200);
+        border-radius: 1.5rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        animation: fade-in 0.6s ease-in-out;
+      }
+      
+      .ranking-title {
+        font-size: 2rem;
+        color: var(--accent-200);
+        margin-bottom: 1.5rem;
+      }
+      
+      .ranking-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        text-align: left;
+      }
+      
+      .ranking-item {
+        background-color: var(--bg-300);
+        margin-bottom: 0.8rem;
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      .ranking-item:first-child {
+        background-color: var(--accent-100);
+        color: white;
+        font-weight: bold;
+        border: 2px solid var(--accent-200);
+      }
+      
+      .ranking-back-btn {
+        margin-top: 1.5rem;
+        background-color: var(--accent-200);
+        color: white;
+        padding: 0.6rem 1.2rem;
+        font-family: var(--font-main);
+        border: none;
+        border-radius: 0.6rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .ranking-back-btn:hover {
+        background-color: var(--accent-100);
+      }   
+   
+   /* =======================
+      ⚠️ Estados
+      ======================= */
+   .swiftie-loading,
+   .swiftie-error {
+     font-size: 1.1rem;
+     text-align: center;
+     margin: 2rem;
+     color: var(--accent-purple);
+     user-select: none;
+   }
+   
+   .quiz-finished {
+     text-align: center;
+     margin-top: 4rem;
+   }
+   
+   .quiz-finished button {
+     background-color: var(--accent-purple);
+     color: var(--white);
+     padding: 0.8rem 1.5rem;
+     border: none;
+     border-radius: 1rem;
+     font-size: 1.2rem;
+     font-weight: bold;
+     cursor: pointer;
+     transition: 0.3s;
+   }
+   
+   .quiz-finished button:hover {
+     background-color: var(--primary-purple);
+   }
+   
+   /* =======================
+      🌟 Animações
+      ======================= */
+   .fade-in {
+     animation: fadeIn 0.8s ease forwards;
+   }
+   
+   @keyframes fadeIn {
+     from {
+       opacity: 0;
+       transform: translateY(16px);
+     }
+     to {
+       opacity: 1;
+       transform: translateY(0);
+     }
+   }
+   
+   

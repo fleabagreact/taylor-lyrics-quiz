@@ -7,6 +7,7 @@ export default function QuizPage({ playerName, setPlayerName }) {
   const [songs, setSongs] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState({ correct: 0, wrong: 0 });
+  const [playerRank, setPlayerRank] = useState(null);
   const navigate = useNavigate();
   const playClick = useClickSound();
 
@@ -50,6 +51,9 @@ export default function QuizPage({ playerName, setPlayerName }) {
     results.push({ name: playerName, score: score.correct });
     const sorted = results.sort((a, b) => b.score - a.score);
     localStorage.setItem('swiftie-ranking', JSON.stringify(sorted));
+
+    const index = sorted.findIndex((r) => r.name === playerName);
+    setPlayerRank(index + 1);
   };
 
   useEffect(() => {
@@ -92,16 +96,13 @@ export default function QuizPage({ playerName, setPlayerName }) {
           <p>Total de acertos: {score.correct}</p>
           <p>Total de erros: {score.wrong}</p>
 
-          {(() => {
-            const results = JSON.parse(localStorage.getItem('swiftie-ranking')) || [];
-            const playerRank = results.findIndex((r) => r.name === playerName) + 1;
-
-            return playerRank > 0 ? (
+          {playerRank !== null && (
+            playerRank > 0 ? (
               <p>Sua posição no ranking: <strong>{playerRank}º lugar</strong></p>
             ) : (
               <p>Você ainda não entrou no ranking 😅</p>
-            );
-          })()}
+            )
+          )}
 
           <br />
 
